@@ -35,6 +35,8 @@
         .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #1e3c72; }
         .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; }
         .form-group input:focus, .form-group select:focus { border-color: #1e3c72; outline: none; }
+        .form-group.error input, .form-group.error select, .form-group.error textarea { border-color: #e74c3c; }
+        .error-message { color: #e74c3c; font-size: 14px; margin-top: 5px; display: none; }
         .submit-btn { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; padding: 15px 40px; border: none; border-radius: 30px; font-size: 1.3em; font-weight: bold; cursor: pointer; width: 100%; transition: all 0.3s ease; }
         .submit-btn:hover { background: linear-gradient(135deg, #2a5298, #1e3c72); transform: translateY(-2px); }
         .guarantee { background: #d4edda; border: 1px solid #c3e6cb; border-radius: 10px; padding: 20px; margin-top: 30px; text-align: center; }
@@ -53,7 +55,7 @@
         <div class="main-content">
             <!-- Success Message -->
             <div id="successMessage" class="success-message">
-                🎉 Благодарим! Резервацията ти е записана! Ще се свържем с теб до края на август когато книгите са готови.
+                🎉 Благодарим! Резервацията ти е записана! Ще се свържем с теб преди да изпратим книгата за потвърждение.
             </div>
 
             <div class="book-showcase">
@@ -74,7 +76,7 @@
 
             <div class="countdown">
                 <h3>⚡ 10% отстъпка за първите 50 поръчки!</h3>
-                <p>Първи доставки до средата на август 2025</p>
+                <p>Ще се свържем с теб преди изпращането за потвърждение</p>
             </div>
 
             <div class="pricing-section">
@@ -113,22 +115,39 @@
                     <input type="hidden" name="_subject" value="Нова поръчка за Триадата 🔥">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_autoresponse" value="Благодарим за резервацията на 'Триада на Промяната'! 
+
+✅ Резервацията ти е записана успешно!
+
+📋 Следващи стъпки:
+▫️ Ще се свържем с теб преди изпращането за потвърждение
+▫️ Плащане само при получаване с наложен платеж
+▫️ Доставка до твоя адрес
+
+За въпроси: hello@triadcoach.com
+
+Поздрави,
+Екипът на Триада на Промяната 🚀">
 
                     <div class="form-group">
                         <label for="name">Име и фамилия *</label>
                         <input type="text" id="name" name="name" required>
+                        <div class="error-message">Моля въведете име и фамилия</div>
                     </div>
                     <div class="form-group">
                         <label for="phone">Телефон *</label>
                         <input type="tel" id="phone" name="phone" required>
+                        <div class="error-message">Моля въведете телефонен номер</div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email (за потвърждение)</label>
                         <input type="email" id="email" name="email">
+                        <div class="error-message">Моля въведете валиден email адрес</div>
                     </div>
                     <div class="form-group">
-                        <label for="address">Адрес за доставка *</label>
-                        <textarea id="address" name="address" rows="3" required placeholder="Улица, номер, град, област"></textarea>
+                        <label for="address">Пълен адрес за доставка *</label>
+                        <textarea id="address" name="address" rows="3" required placeholder="Улица, номер, град, област, пощенски код"></textarea>
+                        <div class="error-message">Моля въведете пълен адрес (улица, номер, град, област)</div>
                     </div>
                     <div class="form-group">
                         <label for="version">Избери версия *</label>
@@ -137,6 +156,7 @@
                             <option value="basic">📖 Основна версия - 22.49 лв</option>
                             <option value="premium">🤖 Premium с AI Coach - 31.49 лв</option>
                         </select>
+                        <div class="error-message">Моля изберете версия на книгата</div>
                     </div>
                     <div class="form-group">
                         <label for="quantity">Бройка</label>
@@ -161,7 +181,7 @@
         </div>
         <div class="contact-info">
             <p>За въпроси: <strong>hello@triadcoach.com</strong></p>
-            <p>Първи доставки до средата на август 2025</p>
+            <p>Ще се свържем с теб преди изпращането за потвърждение</p>
         </div>
     </div>
 
@@ -170,11 +190,83 @@
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('success') === 'true') {
             document.getElementById('successMessage').style.display = 'block';
-            // Scroll to top to show success message
             window.scrollTo(0, 0);
-            // Remove success parameter from URL after showing message
             window.history.replaceState({}, document.title, window.location.pathname);
         }
+
+        // Form validation
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            let isValid = true;
+            
+            // Clear previous errors
+            document.querySelectorAll('.form-group').forEach(group => {
+                group.classList.remove('error');
+                group.querySelector('.error-message').style.display = 'none';
+            });
+
+            // Validate required fields
+            const requiredFields = [
+                { id: 'name', message: 'Моля въведете име и фамилия' },
+                { id: 'phone', message: 'Моля въведете телефонен номер' },
+                { id: 'address', message: 'Моля въведете пълен адрес (улица, номер, град, област)' },
+                { id: 'version', message: 'Моля изберете версия на книгата' }
+            ];
+
+            requiredFields.forEach(field => {
+                const input = document.getElementById(field.id);
+                const group = input.closest('.form-group');
+                const errorMsg = group.querySelector('.error-message');
+                
+                if (!input.value.trim()) {
+                    group.classList.add('error');
+                    errorMsg.textContent = field.message;
+                    errorMsg.style.display = 'block';
+                    isValid = false;
+                }
+            });
+
+            // Validate address completeness
+            const address = document.getElementById('address').value.trim();
+            if (address && address.length < 15) {
+                const group = document.getElementById('address').closest('.form-group');
+                const errorMsg = group.querySelector('.error-message');
+                group.classList.add('error');
+                errorMsg.textContent = 'Моля въведете по-подробен адрес (улица, номер, град, област)';
+                errorMsg.style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate email if provided
+            const email = document.getElementById('email').value.trim();
+            if (email && !email.includes('@')) {
+                const group = document.getElementById('email').closest('.form-group');
+                const errorMsg = group.querySelector('.error-message');
+                group.classList.add('error');
+                errorMsg.textContent = 'Моля въведете валиден email адрес';
+                errorMsg.style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate phone format
+            const phone = document.getElementById('phone').value.trim();
+            if (phone && phone.length < 9) {
+                const group = document.getElementById('phone').closest('.form-group');
+                const errorMsg = group.querySelector('.error-message');
+                group.classList.add('error');
+                errorMsg.textContent = 'Моля въведете валиден телефонен номер';
+                errorMsg.style.display = 'block';
+                isValid = false;
+            }
+
+            if (!isValid) {
+                e.preventDefault();
+                // Scroll to first error
+                const firstError = document.querySelector('.form-group.error');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
     </script>
 </body>
 </html>
