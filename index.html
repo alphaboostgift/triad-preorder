@@ -50,7 +50,16 @@
         .content-list li { padding: 8px 0; border-bottom: 1px solid #ddd; color: #333; }
         .cta-button { background: linear-gradient(45deg, #f39c12, #e74c3c); color: white; padding: 18px 40px; border-radius: 30px; font-size: 18px; font-weight: bold; text-decoration: none; display: inline-block; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(243, 156, 18, 0.3); }
         .cta-button:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(243, 156, 18, 0.4); color: white; text-decoration: none; }
-        @media (max-width: 768px) { .book-showcase { flex-direction: column; } .pricing-options { grid-template-columns: 1fr; } .header h1 { font-size: 2em; } }
+        @media (max-width: 768px) { 
+            .book-showcase { flex-direction: column; } 
+            .pricing-options { grid-template-columns: 1fr; } 
+            .header h1 { font-size: 2em; }
+            .ai-systems { grid-template-columns: 1fr !important; }
+            .scientific-basis > div { grid-template-columns: 1fr !important; }
+            .live-demo > div { grid-template-columns: 1fr !important; }
+            .dual-ai-power > div { grid-template-columns: 1fr !important; }
+            .ecosystem-updates > div { grid-template-columns: 1fr !important; }
+        }
     </style>
 </head>
 <body>
@@ -169,217 +178,177 @@
                 </div>
             </div>
 
-            <div class="order-form" id="orderForm">
-                <h2 style="text-align: center; margin-bottom: 30px; color: #1e3c72;">Резервирай сега - плащаш при получаване</h2>
-                <form action="https://formsubmit.co/hello@triadcoach.com" method="POST" id="orderForm">
-                    <input type="hidden" name="_next" value="https://alphaboostgift.github.io/triad-preorder/?success=true">
-                    <input type="hidden" name="_subject" value="Нова поръчка за Триадата 🔥">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-
-                    <div class="form-group">
-                        <label for="name">Име и фамилия *</label>
-                        <input type="text" id="name" name="name" required>
-                        <div class="error-message">Моля въведете име и фамилия</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Телефон *</label>
-                        <input type="tel" id="phone" name="phone" required>
-                        <div class="error-message">Моля въведете телефонен номер</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email (за потвърждение) *</label>
-                        <input type="email" id="email" name="email" required>
-                        <div class="error-message">Моля въведете валиден email адрес</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="street">Улица и номер *</label>
-                        <input type="text" id="street" name="street" required placeholder="ул. Витоша 15, ап. 3">
-                        <div class="error-message">Моля въведете улица и номер</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">Град *</label>
-                        <input type="text" id="city" name="city" required placeholder="София">
-                        <div class="error-message">Моля въведете град</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="region">Област *</label>
-                        <input type="text" id="region" name="region" required placeholder="София">
-                        <div class="error-message">Моля въведете област</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="postcode">Пощенски код</label>
-                        <input type="text" id="postcode" name="postcode" placeholder="1000" maxlength="4">
-                        <div class="error-message">Моля въведете валиден пощенски код</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="version">Избери версия *</label>
-                        <select id="version" name="version" required>
-                            <option value="">-- Избери версия --</option>
-                            <option value="basic">📖 Основна версия - 22.49 лв</option>
-                            <option value="premium">🤖 Premium с AI Coach - 31.49 лв</option>
-                        </select>
-                        <div class="error-message">Моля изберете версия на книгата</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="quantity">Бройка</label>
-                        <select id="quantity" name="quantity">
-                            <option value="1">1 книга</option>
-                            <option value="2">2 книги</option>
-                            <option value="3">3 книги</option>
-                            <option value="5">5 книги</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="comments">Коментар (по желание)</label>
-                        <textarea id="comments" name="comments" rows="3" placeholder="Въпроси, специални инструкции за доставка..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">🔥 РЕЗЕРВИРАЙ БЕЗПЛАТНО СЕГА</button>
-                </form>
-                <div class="guarantee">
-                    <h3>🛡️ 100% Гаранция за връщане</h3>
-                    <p>Ако не си доволен, връщаш книгата на куриера - без въпроси, без такси!</p>
-                </div>
-            </div>
-        </div>
-        <div class="contact-info">
-            <p>За въпроси: <strong>hello@triadcoach.com</strong></p>
-            <p>Ще се свържем с теб преди изпращането за потвърждение</p>
-        </div>
-    </div>
-
-    <script>
-        // Check for success parameter and show message
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('success') === 'true') {
-            document.getElementById('successMessage').style.display = 'block';
-            window.scrollTo(0, 0);
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Form validation
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            let isValid = true;
-            
-            // Clear previous errors
-            document.querySelectorAll('.form-group').forEach(group => {
-                group.classList.remove('error');
-                group.querySelector('.error-message').style.display = 'none';
-            });
-
-            // Validate required fields
-            const requiredFields = [
-                { id: 'name', message: 'Моля въведете име и фамилия' },
-                { id: 'phone', message: 'Моля въведете телефонен номер' },
-                { id: 'email', message: 'Моля въведете email адрес' },
-                { id: 'street', message: 'Моля въведете улица и номер' },
-                { id: 'city', message: 'Моля въведете град' },
-                { id: 'region', message: 'Моля въведете област' },
-                { id: 'version', message: 'Моля изберете версия на книгата' }
-            ];
-
-            requiredFields.forEach(field => {
-                const input = document.getElementById(field.id);
-                const group = input.closest('.form-group');
-                const errorMsg = group.querySelector('.error-message');
+            <!-- AI DEMONSTRATION SECTION -->
+            <div class="ai-demonstration">
+                <h2 style="text-align: center; color: #1e3c72; margin-bottom: 40px; font-size: 2.5em;">
+                    🤖 Какво точно получавате с AI Premium версията?
+                </h2>
                 
-                if (!input.value.trim()) {
-                    group.classList.add('error');
-                    errorMsg.textContent = field.message;
-                    errorMsg.style.display = 'block';
-                    isValid = false;
-                }
-            });
+                <div class="ai-intro" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; margin-bottom: 40px; text-align: center;">
+                    <h3 style="margin-bottom: 15px; font-size: 1.8em;">Не просто книга - ЦЯЛОСТНА AI ТРАНСФОРМАЦИОННА СИСТЕМА!</h3>
+                    <p style="font-size: 1.2em; opacity: 0.9;">Получавате 2 напълно функционални AI системи, интегрирани с <strong>ChatGPT-4 и Claude Sonnet 4</strong>, които работят като ваш личен coach 24/7</p>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
+                        <div style="background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 25px; display: flex; align-items: center;">
+                            <span style="font-size: 1.2em; margin-right: 8px;">🤖</span>
+                            <span style="font-weight: bold;">ChatGPT-4</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 25px; display: flex; align-items: center;">
+                            <span style="font-size: 1.2em; margin-right: 8px;">🧠</span>
+                            <span style="font-weight: bold;">Claude Sonnet 4</span>
+                        </div>
+                    </div>
+                </div>
 
-            // Validate street address length
-            const street = document.getElementById('street').value.trim();
-            if (street && street.length < 8) {
-                const group = document.getElementById('street').closest('.form-group');
-                const errorMsg = group.querySelector('.error-message');
-                group.classList.add('error');
-                errorMsg.textContent = 'Моля въведете по-подробен адрес (улица и номер)';
-                errorMsg.style.display = 'block';
-                isValid = false;
-            }
+                <div class="ai-systems" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;">
+                    
+                    <!-- 365 DAY TRACKER -->
+                    <div class="ai-system" style="background: white; border: 3px solid #f39c12; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <h3 style="color: #f39c12; font-size: 1.5em; margin-bottom: 10px;">🎯 365-DAY AI TRACKER</h3>
+                            <div style="background: #f39c12; color: white; padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.9em; font-weight: bold;">ChatGPT-4 + Claude Sonnet 4</div>
+                        </div>
+                        
+                        <div class="ai-features">
+                            <div class="feature" style="display: flex; align-items: center; margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                <span style="font-size: 1.5em; margin-right: 12px;">💪</span>
+                                <div>
+                                    <strong>Daily AI Motivation</strong><br>
+                                    <small style="color: #666;">Персонализирани мотивационни съобщения според вашия прогрес и фаза</small>
+                                </div>
+                            </div>
+                            
+                            <div class="feature" style="display: flex; align-items: center; margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                <span style="font-size: 1.5em; margin-right: 12px;">📈</span>
+                                <div>
+                                    <strong>Progress Analysis</strong><br>
+                                    <small style="color: #666;">AI анализ на трите стълба: Vision, Balance, Micro-Revolution</small>
+                                </div>
+                            </div>
+                            
+                            <div class="feature" style="display: flex; align-items: center; margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                <span style="font-size: 1.5em; margin-right: 12px;">🔄</span>
+                                <div>
+                                    <strong>Smart Habit Suggestions</strong><br>
+                                    <small style="color: #666;">Micro-habits препоръки базирани на 1% improvement принципа</small>
+                                </div>
+                            </div>
+                            
+                            <div class="feature" style="display: flex; align-items: center; margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                <span style="font-size: 1.5em; margin-right: 12px;">📅</span>
+                                <div>
+                                    <strong>Tomorrow Success Plans</strong><br>
+                                    <small style="color: #666;">AI-генерирани планове за всеки ден със специфични действия</small>
+                                </div>
+                            </div>
+                            
+                            <div class="feature" style="display: flex; align-items: center; margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                <span style="font-size: 1.5em; margin-right: 12px;">🎯</span>
+                                <div>
+                                    <strong>Phase Coaching</strong><br>
+                                    <small style="color: #666;">Експертно coaching за всяка от 4-те фази (Foundation → Mastery)</small>
+                                </div>
+                            </div>
+                            
+                            <div class="feature" style="display: flex; align-items: center; margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                <span style="font-size: 1.5em; margin-right: 12px;">🚀</span>
+                                <div>
+                                    <strong>Plateau Breakthrough</strong><br>
+                                    <small style="color: #666;">Научно базирани стратегии за преодоляване на застои</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            // Validate city length
-            const city = document.getElementById('city').value.trim();
-            if (city && city.length < 3) {
-                const group = document.getElementById('city').closest('.form-group');
-                const errorMsg = group.querySelector('.error-message');
-                group.classList.add('error');
-                errorMsg.textContent = 'Моля въведете валидно име на град';
-                errorMsg.style.display = 'block';
-                isValid = false;
-            }
+                    <!-- WEEKLY JOURNAL -->
+                    <div class="ai-system" style="background: white; border: 3px solid #9b59b6; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <h3 style="color: #9b59b6; font-size: 1.5em; margin-bottom: 10px;">🧠 WEEKLY AI JOURNAL</h3>
+                            <div style="background: #9b59b6; color: white; padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.9em; font-weight: bold;">Claude Sonnet 4 Analytics</div>
+                        </div>
+                        
+                        <div class="ai-features">
+                            <div class="feature" style="display: flex; align-items: center; margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                <span style="font-size: 1.5em; margin-right: 12px;">📊</span>
+                                <div>
+                                    <strong>Emotional Pattern Analysis</strong><br>
+                                    <small style="color: #666;">AI анализ на mood patterns и енергийни нива</small>
+                                </div>
+                            </div>
+                            
+                            <div class="feature" style="display: flex; align-items: center; margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                <span style="font-size: 1.5em; margin-right: 12px;">🤖</span>
+                                <div>
+                                    <strong>Monthly AI Coach Reports</strong><br>
+                                    <small style="color: #666;">Задълбочени анализи на поведенчески тенденции и препоръки</small>
+                                </div>
+                            </div>
+                            
+                            <div class="feature" style="display: flex; align-items: center; margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                <span style="font-size: 1.5em; margin-right: 12px;">📈</span>
+                                <div>
+                                    <strong>Progress Tracking</strong><br>
+                                    <small style="color: #666;">Automatic logging и analytics на daily wins и struggles</small>
+                                </div>
+                            </div>
+                            
+                            <div class="feature" style="display: flex; align-items: center; margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                <span style="font-size: 1.5em; margin-right: 12px;">📂</span>
+                                <div>
+                                    <strong>Historical Archive System</strong><br>
+                                    <small style="color: #666;">Пълна история на прогреса с възможност за сравняване</small>
+                                </div>
+                            </div>
+                            
+                            <div class="feature" style="display: flex; align-items: center; margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                <span style="font-size: 1.5em; margin-right: 12px;">🔍</span>
+                                <div>
+                                    <strong>Top Patterns Detection</strong><br>
+                                    <small style="color: #666;">AI identifica най-често срещаните wins, struggles и emotions</small>
+                                </div>
+                            </div>
+                            
+                            <div class="feature" style="display: flex; align-items: center; margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+                                <span style="font-size: 1.5em; margin-right: 12px;">⚡</span>
+                                <div>
+                                    <strong>Instant Reflection Tools</strong><br>
+                                    <small style="color: #666;">One-click tools за reflection и self-improvement</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            // Validate region length
-            const region = document.getElementById('region').value.trim();
-            if (region && region.length < 3) {
-                const group = document.getElementById('region').closest('.form-group');
-                const errorMsg = group.querySelector('.error-message');
-                group.classList.add('error');
-                errorMsg.textContent = 'Моля въведете валидно име на област';
-                errorMsg.style.display = 'block';
-                isValid = false;
-            }
+                <!-- LIVE DEMO SECTION -->
+                <div class="live-demo" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 15px; margin-bottom: 40px;">
+                    <h3 style="text-align: center; margin-bottom: 30px; font-size: 2em;">🔥 Вижте системите в действие:</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <div class="demo-example" style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                            <h4 style="margin-bottom: 15px; color: #ffd700;">🤖 ChatGPT-4 Daily Motivation:</h4>
+                            <div style="background: rgba(255,255,255,0.9); color: #333; padding: 15px; border-radius: 8px; font-style: italic;">
+                                "Day 47 in your Foundation phase! Your Micro-Revolution score of 7/10 shows excellent habit consistency. Today, focus on upgrading your Quantum Vision by visualizing your 90-day milestone. Small actions compound - you're building unstoppable momentum!"
+                            </div>
+                        </div>
+                        
+                        <div class="demo-example" style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                            <h4 style="margin-bottom: 15px; color: #ffd700;">🧠 Claude Sonnet 4 Analysis:</h4>
+                            <div style="background: rgba(255,255,255,0.9); color: #333; padding: 15px; border-radius: 8px; font-style: italic;">
+                                "Pattern detected: Your energy peaks on Wednesday-Friday. Top struggle: 'overwhelm' (4× this month). Strategic insight: Implement the 5-minute rule on Mondays to build momentum for stronger weeks. Your emotional resilience is strengthening."
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            // Validate postcode if provided
-            const postcode = document.getElementById('postcode').value.trim();
-            if (postcode && (postcode.length !== 4 || !/^\d{4}$/.test(postcode))) {
-                const group = document.getElementById('postcode').closest('.form-group');
-                const errorMsg = group.querySelector('.error-message');
-                group.classList.add('error');
-                errorMsg.textContent = 'Пощенският код трябва да съдържа точно 4 цифри';
-                errorMsg.style.display = 'block';
-                isValid = false;
-            }
-
-            // Validate email format (now required)
-            const email = document.getElementById('email').value.trim();
-            if (!email.includes('@') || !email.includes('.')) {
-                const group = document.getElementById('email').closest('.form-group');
-                const errorMsg = group.querySelector('.error-message');
-                group.classList.add('error');
-                errorMsg.textContent = 'Моля въведете валиден email адрес';
-                errorMsg.style.display = 'block';
-                isValid = false;
-            }
-
-            // Validate phone format
-            const phone = document.getElementById('phone').value.trim();
-            if (phone && phone.length < 9) {
-                const group = document.getElementById('phone').closest('.form-group');
-                const errorMsg = group.querySelector('.error-message');
-                group.classList.add('error');
-                errorMsg.textContent = 'Моля въведете валиден телефонен номер';
-                errorMsg.style.display = 'block';
-                isValid = false;
-            }
-
-            if (!isValid) {
-                e.preventDefault();
-                // Scroll to first error
-                const firstError = document.querySelector('.form-group.error');
-                if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }
-        });
-    </script>
-</body>
-</html>
+                <!-- CONTINUOUS UPDATES & ECOSYSTEM -->
+                <div class="ecosystem-updates" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 35px; border-radius: 15px; margin-bottom: 30px;">
+                    <h3 style="text-align: center; margin-bottom: 25px; font-size: 2em;">🚀 Не просто покупка - влизате в растяща екосистема!</h3>
+                    
+                    <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 12px; margin-bottom: 25px;">
+                        <h4 style="color: #ffd700; margin-bottom: 20px; font-size: 1.4em; text-align: center;">⚡ БЕЗПЛАТНИ UPGRADE-И ДОЖИВОТНО</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div>
+                                <h5 style="margin-bottom: 15px; color: #ffd700;">🔄 AI Системни Upgrade-и:</h5>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="margin-bottom: 10px;">✓ Нови AI функционалности всеки месец</li>
+                                    <li style="margin-bottom: 10px;">✓ Integration с най-новите AI модели</li>
+                                    <li style="margin-bottom: 10px;">✓ Enhanced analytics и insights</li>
