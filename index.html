@@ -458,9 +458,11 @@
 
             <div class="order-form" id="orderForm">
                 <h2 style="text-align: center; margin-bottom: 30px; color: #1e3c72;">Резервирай сега - плащаш при получаване</h2>
-                <form action="https://preorder.triadcoach.com/?success=true" method="GET" id="orderForm">
-                    <!-- Email data will be handled by JavaScript -->
-                    <input type="hidden" name="success" value="true">
+                <form action="https://formsubmit.co/hello@triadcoach.com" method="POST" id="orderForm">
+                    <input type="hidden" name="_next" value="https://preorder.triadcoach.com/?success=true">
+                    <input type="hidden" name="_subject" value="Нова поръчка за Триадата 🔥">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
 
                     <div class="form-group">
                         <label for="name">Име и фамилия *</label>
@@ -663,47 +665,6 @@
                 if (firstError) {
                     firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
-            } else {
-                // If valid, send email data to your email
-                e.preventDefault();
-                
-                // Collect form data
-                const formData = {
-                    name: document.getElementById('name').value,
-                    phone: document.getElementById('phone').value,
-                    email: document.getElementById('email').value,
-                    street: document.getElementById('street').value,
-                    city: document.getElementById('city').value,
-                    region: document.getElementById('region').value,
-                    postcode: document.getElementById('postcode').value,
-                    version: document.getElementById('version').value,
-                    quantity: document.getElementById('quantity').value,
-                    comments: document.getElementById('comments').value
-                };
-                
-                // Create mailto link
-                const subject = encodeURIComponent('Нова поръчка за Триадата 🔥');
-                const body = encodeURIComponent(`
-Нова поръчка за "Триада на Промяната":
-
-Име: ${formData.name}
-Телефон: ${formData.phone}
-Email: ${formData.email}
-Адрес: ${formData.street}, ${formData.city}, ${formData.region} ${formData.postcode}
-Версия: ${formData.version}
-Бройка: ${formData.quantity}
-Коментар: ${formData.comments}
-
-Дата: ${new Date().toLocaleString('bg-BG')}
-                `);
-                
-                // Open mailto link
-                window.open(`mailto:hello@triadcoach.com?subject=${subject}&body=${body}`, '_blank');
-                
-                // Redirect to success page
-                setTimeout(() => {
-                    window.location.href = '?success=true';
-                }, 1000);
             }
         });
     </script>
