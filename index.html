@@ -39,6 +39,7 @@
         .submit-btn:hover { background: linear-gradient(135deg, #2a5298, #1e3c72); transform: translateY(-2px); }
         .guarantee { background: #d4edda; border: 1px solid #c3e6cb; border-radius: 10px; padding: 20px; margin-top: 30px; text-align: center; }
         .contact-info { text-align: center; color: white; margin-top: 40px; }
+        .success-message { background: #d4edda; border: 1px solid #c3e6cb; border-radius: 10px; padding: 20px; margin-bottom: 30px; text-align: center; color: #155724; font-weight: bold; display: none; }
         @media (max-width: 768px) { .book-showcase { flex-direction: column; } .pricing-options { grid-template-columns: 1fr; } .header h1 { font-size: 2em; } }
     </style>
 </head>
@@ -50,6 +51,11 @@
         </div>
 
         <div class="main-content">
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message">
+                🎉 Благодарим! Резервацията ти е записана! Ще се свържем с теб до края на август когато книгите са готови.
+            </div>
+
             <div class="book-showcase">
                 <div class="book-image">
                     <img src="./triada-korica.jpg.png" alt="Корица на книгата" />
@@ -103,6 +109,7 @@
             <div class="order-form">
                 <h2 style="text-align: center; margin-bottom: 30px; color: #1e3c72;">Резервирай сега - плащаш при получаване</h2>
                 <form action="https://formsubmit.co/hello@triadcoach.com" method="POST" id="orderForm">
+                    <input type="hidden" name="_next" value="https://alphaboostgift.github.io/triad-preorder/?success=true">
                     <input type="hidden" name="_subject" value="Нова поръчка за Триадата 🔥">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
@@ -157,5 +164,17 @@
             <p>Първи доставки до средата на август 2025</p>
         </div>
     </div>
+
+    <script>
+        // Check for success parameter and show message
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            document.getElementById('successMessage').style.display = 'block';
+            // Scroll to top to show success message
+            window.scrollTo(0, 0);
+            // Remove success parameter from URL after showing message
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    </script>
 </body>
 </html>
